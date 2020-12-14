@@ -6,9 +6,10 @@ As we can see the results for shadow paging,
  $./a.out CPUID(0X4FFFFFFE), exit number=10, number of exits = 156810  
  Which is more than in nested paging. 
 ### Q3. What did you learn from the count of exits? Was the count what you expected? If not, why not?  
-The count of exits in the nested paging is less than the count in shadow paging.  
+The count of exits in the nested paging is less than the count in shadow paging. 
 The count of exits is expected.  
-Because: 
-In the nexted paging, 
+Because: Nested paging should only 
+In the nexted paging, there is host page and guset page. So the process or clear will be more memory locations which's access of memory maybe higher, exits only happen in VM exit when EPT violation occurs. And in shadow page, exits occour everytime when VM check for a page.  
+Therefore, the count of exits in shadow paging is more than the count in nested paging.
 ### Q4. What changed between the two runs (ept vs no-ept)?
  If there is no-ept, the exits' count will be more than when there is ept. When there is ept(to nested paging), there are more locations, then it will access more memory than there is no-ept (shadow paging). 
